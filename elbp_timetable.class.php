@@ -498,10 +498,14 @@ class elbp_timetable extends Plugin {
         else
         {
             
+            $format = $this->getSetting('mis_day_number_format');
             $today = date('Ymd');
-            $params = array($this->student->id, $dayNumber, $today, $today);
+            $todayDayNumber = date($format, time());
+            $diff = $dayNumber - $todayDayNumber;
+            $dayDate = $today + $diff;
+            $params = array($this->student->id, $dayNumber, $today, $dayDate, $today);
             $results = $this->DB->get_records_select("lbp_timetable", 
-                                                    "userid = ? AND daynumber = ? AND startdate <= ? AND enddate >= ?",
+                                                    "userid = ? AND daynumber = ? AND (startdate <= ? OR startdate <= ?) AND enddate >= ?",
                                                     $params,
                                                     "starttime ASC", 
                                                     "id");            
@@ -859,7 +863,7 @@ CSS;
         $matrix['FRI'] = $this->buildMultiDimensionalArray();
         $matrix['SAT'] = $this->buildMultiDimensionalArray();
         $matrix['SUN'] = $this->buildMultiDimensionalArray();
-                
+                        
         // Loop through records in DB and add to array
         foreach($classes as $class)
         {
