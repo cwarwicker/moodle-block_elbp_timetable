@@ -6,7 +6,7 @@ Installation
 ------------
 - Download the zip file, using the green "Clone or download" button
 - Extract the files 
-- Rename the folder inside "moodle-block_elbp_timetable-master" to just "elbp".
+- Rename the folder inside "moodle-block_elbp_timetable-master" to just "elbp_timetable".
 - Place the "elbp_timetable" folder inside the /blocks directory of your Moodle site and run through the normal plugin installation procedure, then you can add the block to a course page.
 
 Installation of ELBP Plugin
