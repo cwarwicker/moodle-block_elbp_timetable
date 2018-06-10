@@ -2377,8 +2377,8 @@ CSS;
         $cntCourses = $DB->count_records("course");
         
         $mins = array('00', '15', '30', '45');
-        $startDates = array('20140901', '20140924', '20140101', '20150901');
-        $endDates = array('20150701', '20150721', '20141231', '20160701');
+        $startDates = array('20180901', '20180924', '20180101', '20190901');
+        $endDates = array('20190701', '20190721', '20181231', '20200701');
         $names = array('John', 'Mark', 'Jimmy', 'Geoff', 'Paul', 'Lisa', 'Sarah', 'Henry', 'Rocky', 'Hannah');
         $lnames = array('Smith', 'Rolands', 'Warwick', 'Terry', 'Knight', 'Matthews', 'Rhodes', 'Hudson', 'Darko', 'Johnson');
         
@@ -2419,7 +2419,7 @@ CSS;
                     }
                     else
                     {
-                        $data[] = 'C101_14';
+                        $data[] = 'C101_18';
                         $data[] = 'Some fake course and stuff';
                     }
                     
@@ -2635,7 +2635,7 @@ CSS;
             
             if (!array_key_exists($username, $validUsernames)){
                                 
-                $user = $DB->get_record("user", array($userField => $username, "deleted" => 0), "id, username, idnumber, firstname, lastname");
+                $user = $DB->get_record("user", array($userField => $username, "deleted" => 0));
                 
                 if ($user){
                     $validUsernames[$username] = $user;
