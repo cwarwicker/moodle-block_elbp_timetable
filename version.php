@@ -10,6 +10,6 @@
  * 
  */
 
-$plugin->version = 2014022706;
-$plugin->requires = 2012062502;
+$plugin->version = 2018061000;
+$plugin->requires = 2014111006;
 $plugin->component = 'block_elbp_timetable';
