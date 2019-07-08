@@ -19,7 +19,7 @@
  *
  * ELBP is a moodle block plugin, which provides one singular place for all of a student's key academic information to be stored and viewed, such as attendance, targets, tutorials,
  * reports, qualification progress, etc... as well as unlimited custom sections.
- * 
+ *
  * @package     block_elbp
  * @subpackage  block_elbp_timetable
  * @copyright   2017-onwards Conn Warwicker
@@ -28,7 +28,7 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  * Originally developed at Bedford College, now maintained by Conn Warwicker
- * 
+ *
  */
 
 require_once '../../config.php';
@@ -50,6 +50,9 @@ $PAGE->set_cacheable(true);
 $ELBP->loadJavascript();
 $ELBP->loadCSS();
 
+// Load the elbp_timetbale scripts
+$PAGE->requires->js_call_amd('block_elbp_timetable/scripts', 'init');
+
 // If course is set, put that into breadcrumb
 $PAGE->navbar->add( get_string('fulltimetable', 'block_elbp_timetable'), $CFG->wwwroot . '/blocks/elbp_timetable/full.php', navigation_node::TYPE_CUSTOM);
 $PAGE->navbar->add( fullname($USER), null, navigation_node::TYPE_CUSTOM);
@@ -58,11 +61,11 @@ echo $OUTPUT->header();
 
 try {
     $TT = \ELBP\Plugins\Plugin::instaniate("elbp_timetable");
-    $TT->loadStudent($USER->id);    
+    $TT->loadStudent($USER->id);
     $TT->connect();
     $TT->setAccess( array("user"=>true) );
     $TT->buildCSS();
-    $TT->buildFull( array("format"=>true) );    
+    $TT->buildFull( array("format"=>true) );
 } catch (\ELBP\ELBPException $e){
     echo $e->getException();
 }

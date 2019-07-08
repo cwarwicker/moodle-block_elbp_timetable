@@ -19,7 +19,7 @@
  *
  * ELBP is a moodle block plugin, which provides one singular place for all of a student's key academic information to be stored and viewed, such as attendance, targets, tutorials,
  * reports, qualification progress, etc... as well as unlimited custom sections.
- * 
+ *
  * @package     block_elbp
  * @subpackage  block_elbp_timetable
  * @copyright   2017-onwards Conn Warwicker
@@ -28,7 +28,7 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  * Originally developed at Bedford College, now maintained by Conn Warwicker
- * 
+ *
  */
 
 $string['config'] = 'Block Configuration';
@@ -37,7 +37,7 @@ $string['elbp_timetable:can_change_colours'] = 'Change Timetable Colours';
 $string['elbp_timetable:addinstance'] = 'Add Instance';
 $string['dataimport:warning'] = 'Since a timetable slot might change drastically, ie. be moved to a different time, day and room, we cannot 100% accurately update timetable records, therefore whenever data is imported into timetable, the current records for that student will be wiped and replaced with whatever is in your csv.';
 $string['datasettings:info'] = 'Here you can define settings related to the data import, such as, if the script comes across a user that does not exist, should it create them? etc...';
-$string['pluginname'] = 'Timetable Block';
+$string['pluginname'] = 'Timetable';
 $string['timetable'] = 'Timetable';
 $string['showfulltimetable'] = 'Show Full Timetable';
 $string['timetableconfig'] = 'Timetable Configuration';
@@ -125,8 +125,6 @@ $string['map:id'] = 'ID';
 $string['map:id:desc'] = 'The primary "id" field of the table/view';
 $string['map:daynum'] = 'Day Number';
 $string['map:daynum:desc'] = 'The field of the table/view that contains the number value of the day, e.g. 1 = Monday, 2 = Tuesday, etc...';
-$string['map:dayname'] = 'Day Name';
-$string['map:dayname:desc'] = 'The field of the table/view that contains the string value of the day, e.g. Monday, Tuesday, etc...';
 $string['map:username'] = 'Username';
 $string['map:username:desc'] = 'The field of the table/view that contains the student username/idnumber';
 $string['map:lessonname'] = 'Lesson Name';

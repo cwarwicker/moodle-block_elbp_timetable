@@ -19,7 +19,7 @@
  *
  * ELBP is a moodle block plugin, which provides one singular place for all of a student's key academic information to be stored and viewed, such as attendance, targets, tutorials,
  * reports, qualification progress, etc... as well as unlimited custom sections.
- * 
+ *
  * @package     block_elbp
  * @subpackage  block_elbp_timetable
  * @copyright   2017-onwards Conn Warwicker
@@ -28,7 +28,7 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  * Originally developed at Bedford College, now maintained by Conn Warwicker
- * 
+ *
  */
 
 require_once '../../config.php';
@@ -56,7 +56,7 @@ try {
 
 
 $TPL = new \ELBP\Template();
-$MSGS['errors'] = '';
+$MSGS['errors'] = array();
 $MSGS['success'] = '';
 
 // Submitted
@@ -89,30 +89,30 @@ $TPL->set("MSGS", $MSGS);
 switch($view)
 {
     case 'data':
-        
+
         // Create directory for template csvs
         $TT->createDataDirectory('templates');
-        
+
         $reload = (bool)optional_param('reload', 0, PARAM_INT);
-        
+
         // If template csv doesn't exist, create it, otherwise get the file path
         $importFile = $TT->createTemplateImportCsv($reload);
         $TPL->set("importFile", $importFile);
-        
+
         // If example csv doesn't exist, create it, otherwise get the file path
         $exampleFile = $TT->createExampleImportCsv($reload);
         $TPL->set("exampleFile", $exampleFile);
-        
+
     break;
 
     case 'mis':
-        
+
         $core = $TT->getMainMIS();
         if ($core){
             $conn = new \ELBP\MISConnection($core->id);
             $TPL->set("conn", $conn);
         }
-        
+
     break;
 
 }
