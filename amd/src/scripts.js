@@ -26,7 +26,7 @@ define(['jquery', 'jqueryui', 'block_elbp/scripts'], function($, ui, elbp) {
 
   //-- Log something to console
   client.log = function(log){
-      console.log('[ELBP] ' + new Date().toTimeString().split(' ')[0] + ': ' + log );
+      console.log('[ELBP/timetable] ' + new Date().toTimeString().split(' ')[0] + ': ' + log );
   }
 
   //-- Initialise the scripts
