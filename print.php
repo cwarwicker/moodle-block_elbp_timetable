@@ -13,20 +13,20 @@
 require_once '../../config.php';
 require_once $CFG->dirroot . '/blocks/elbp/lib.php';
 
-$ELBP = ELBP\ELBP::instantiate();
-$DBC = new ELBP\DB();
+$ELBP = block_elbp\ELBP::instantiate();
+$DBC = new block_elbp\DB();
 
 // Need to be logged in to view this page
 require_login();
 
 try {
-    $TT = \ELBP\Plugins\Plugin::instaniate("elbp_timetable");
+    $TT = \block_elbp\Plugins\Plugin::instaniate("elbp_timetable");
     $TT->loadStudent($USER->id);
     $TT->connect();
-    $TPL = new ELBP\Template();
+    $TPL = new block_elbp\Template();
     $TPL->set("TT", $TT);
     $TPL->load($CFG->dirroot . '/blocks/elbp_timetable/tpl/print.html');
     $TPL->display();
-} catch (\ELBP\ELBPException $e){
+} catch (\block_elbp\ELBPException $e){
     echo $e->getException();
 }

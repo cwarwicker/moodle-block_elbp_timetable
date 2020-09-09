@@ -10,7 +10,7 @@
  * 
  */
 
-namespace ELBP\Plugins;
+namespace block_elbp\Plugins;
 
 // The calendar doesn't seem to work without the timezone being UTC, I think it's to do with the DateTime calls, not sure
 date_default_timezone_set("UTC");
@@ -42,7 +42,7 @@ class elbp_timetable extends Plugin {
                 "name" => strip_namespace(get_class($this)),
                 "title" => "Timetable",
                 "path" => "/blocks/elbp_timetable/",
-                "version" => \ELBP\ELBP::getBlockVersionStatic()
+                "version" => \block_elbp\ELBP::getBlockVersionStatic()
             ) );
         }
         else
@@ -61,7 +61,7 @@ class elbp_timetable extends Plugin {
             if ($this->connection && $this->connection->connect()){
                 $core = $this->getMainMIS();
                 if ($core){
-                    $pluginConn = new \ELBP\MISConnection($core->id);
+                    $pluginConn = new \block_elbp\MISConnection($core->id);
                     if ($pluginConn->isValid()){
                         $this->useMIS = true;
                         $this->plugin_connection = $pluginConn;
@@ -134,7 +134,7 @@ class elbp_timetable extends Plugin {
     /**
      * Get all the student's classes
      * @param type $params
-     * @return \ELBP\Plugins\Timetable\Lesson
+     * @return \block_elbp\Plugins\Timetable\Lesson
      */
     public function getAllClasses($params)
     {
@@ -202,7 +202,7 @@ class elbp_timetable extends Plugin {
                                             || 
                                          ( $ymdStart >= $params['weekStart']['ymd'] && $ymdStart <= $params['weekEnd']['ymd'] ) 
                                        )  {
-                                        $classes[] = new \ELBP\Plugins\Timetable\Lesson($this, $result);
+                                        $classes[] = new \block_elbp\Plugins\Timetable\Lesson($this, $result);
                                     }
                                 
                                 }
@@ -211,7 +211,7 @@ class elbp_timetable extends Plugin {
                             }
                             else
                             {                          
-                                $classes[] = new \ELBP\Plugins\Timetable\Lesson($this, $result);
+                                $classes[] = new \block_elbp\Plugins\Timetable\Lesson($this, $result);
                             }
                         }
                     }
@@ -237,7 +237,7 @@ class elbp_timetable extends Plugin {
                 if ($results){
                     foreach ($results as $result)
                     {
-                        $classes[] = new \ELBP\Plugins\Timetable\Lesson($this, $result);
+                        $classes[] = new \block_elbp\Plugins\Timetable\Lesson($this, $result);
                     }
                 }
                 
@@ -267,7 +267,7 @@ class elbp_timetable extends Plugin {
                 if ($results){
                     foreach ($results as $result)
                     {
-                        $classes[] = new \ELBP\Plugins\Timetable\Lesson($this, $result->id);
+                        $classes[] = new \block_elbp\Plugins\Timetable\Lesson($this, $result->id);
                     }
                 }
                 
@@ -338,14 +338,14 @@ class elbp_timetable extends Plugin {
 
                             if ($ymdStart <= $today && $ymdEnd >= $today)
                             {
-                                $classes[] = new \ELBP\Plugins\Timetable\Lesson($this, $result);
+                                $classes[] = new \block_elbp\Plugins\Timetable\Lesson($this, $result);
                             }
                         }
                         
                     }
                     else
                     {
-                        $classes[] = new \ELBP\Plugins\Timetable\Lesson($this, $result);
+                        $classes[] = new \block_elbp\Plugins\Timetable\Lesson($this, $result);
                     }
                     
                 }
@@ -372,7 +372,7 @@ class elbp_timetable extends Plugin {
                                                     "id");            
             foreach ((array)$results as $result)
             {
-                $classes[] = new \ELBP\Plugins\Timetable\Lesson($this, $result->id);
+                $classes[] = new \block_elbp\Plugins\Timetable\Lesson($this, $result->id);
             }
             
         }
@@ -403,7 +403,7 @@ class elbp_timetable extends Plugin {
             $dayClasses = $this->getClassesByDate($day);
             
             // Sort
-            $dayClasses = \ELBP\Plugins\Timetable\Lesson::sortLessons($dayClasses);
+            $dayClasses = \block_elbp\Plugins\Timetable\Lesson::sortLessons($dayClasses);
                         
             // Add to array to return
             $classes[$day->format("d")] = $dayClasses;
@@ -477,7 +477,7 @@ class elbp_timetable extends Plugin {
 
                             if ($ymdStart <= $today && $ymdEnd >= $today)
                             {
-                                $classes[] = new \ELBP\Plugins\Timetable\Lesson($this, $result);
+                                $classes[] = new \block_elbp\Plugins\Timetable\Lesson($this, $result);
                             }
                         
                         }
@@ -485,7 +485,7 @@ class elbp_timetable extends Plugin {
                     }
                     else
                     {
-                        $classes[] = new \ELBP\Plugins\Timetable\Lesson($this, $result);
+                        $classes[] = new \block_elbp\Plugins\Timetable\Lesson($this, $result);
                     }
                     
                 }
@@ -507,7 +507,7 @@ class elbp_timetable extends Plugin {
                                                     "id");            
             foreach ((array)$results as $result)
             {
-                $classes[] = new \ELBP\Plugins\Timetable\Lesson($this, $result->id);
+                $classes[] = new \block_elbp\Plugins\Timetable\Lesson($this, $result->id);
             }
             
         }
@@ -1087,7 +1087,7 @@ CSS;
         
         if (!$this->student) return false;
         
-        $TPL = new \ELBP\Template();
+        $TPL = new \block_elbp\Template();
         $TPL->set("access", $this->access);
         $TPL->load($this->CFG->dirroot . '/blocks/elbp_timetable/tpl/fullcalendar.html');
         $TPL->display();
@@ -1256,7 +1256,7 @@ CSS;
     
     /**
      * Truncate related tables and uninstall plugin
-     * @global \ELBP\Plugins\type $DB
+     * @global \block_elbp\Plugins\type $DB
      */
     public function uninstall() {
         
@@ -1352,11 +1352,11 @@ CSS;
         
         $output = "";
         
-        $TPL = new \ELBP\Template();
+        $TPL = new \block_elbp\Template();
                 
         try {
             $output .= $TPL->load($this->CFG->dirroot . '/blocks/elbp_timetable/tpl/expanded.html');
-        } catch (\ELBP\ELBPException $e){
+        } catch (\block_elbp\ELBPException $e){
             $output .= $e->getException();
         }
 
@@ -1370,7 +1370,7 @@ CSS;
      */
     function getSummaryBox(){
         
-        $TPL = new \ELBP\Template();
+        $TPL = new \block_elbp\Template();
                 
         $this->connect();
         
@@ -1379,7 +1379,7 @@ CSS;
         try {
             return $TPL->load($this->CFG->dirroot . '/blocks/elbp_timetable/tpl/summary.html');
         }
-        catch (\ELBP\ELBPException $e){
+        catch (\block_elbp\ELBPException $e){
             return $e->getException();
         }
         
@@ -1398,7 +1398,7 @@ CSS;
         
         global $USER, $MSGS;
         
-        $TPL = new \ELBP\Template();
+        $TPL = new \block_elbp\Template();
         
         switch($action)
         {
@@ -1414,7 +1414,7 @@ CSS;
                                 
                 $this->setAccess($access);
                                 
-                $TPL = new \ELBP\Template();
+                $TPL = new \block_elbp\Template();
                 $TPL->set("obj", $this);
                 $TPL->set("student", $this->student);
                 $TPL->set("access", $this->access);
@@ -1424,7 +1424,7 @@ CSS;
                     //$this->$method($TPL);
                     $TPL->load( $this->CFG->dirroot . '/blocks/elbp_timetable/tpl/'.$params['type'].'.html' );
                     $TPL->display();                    
-                } catch (\ELBP\ELBPException $e){
+                } catch (\block_elbp\ELBPException $e){
                     echo $e->getException();
                 }
                 exit;                
@@ -1442,7 +1442,7 @@ CSS;
                     $TPL->set("TT", $this);
                     $TPL->load( $this->CFG->dirroot . '/blocks/elbp_timetable/tpl/colour_settings_form.html' );
                     $TPL->display();
-                } catch (\ELBP\ELBPException $e){
+                } catch (\block_elbp\ELBPException $e){
                     echo $e->getException();
                 }
                 
@@ -1498,7 +1498,7 @@ CSS;
                     $TPL->set("access", $this->access);
                     $TPL->load( $this->CFG->dirroot . '/blocks/elbp_timetable/tpl/cal/'.$params['type'].'.html' );
                     $TPL->display();
-                } catch (\ELBP\ELBPException $e){
+                } catch (\block_elbp\ELBPException $e){
                     echo $e->getException();
                 }
                 
@@ -2173,7 +2173,7 @@ CSS;
                 }
                 
                 // Set the mappings
-                $conn = new \ELBP\MISConnection($core->id);
+                $conn = new \block_elbp\MISConnection($core->id);
                 if ($conn->isValid())
                 {
                 
@@ -2240,7 +2240,7 @@ CSS;
             return false;
         }
         
-        $conn = new \ELBP\MISConnection($core->id);
+        $conn = new \block_elbp\MISConnection($core->id);
         if (!$conn->isValid()){
             $MSGS['errors'][] = get_string('connectioninvalid', 'block_elbp_timetable');
             return false;
@@ -2486,7 +2486,7 @@ CSS;
     
     /**
      * Run the csv data import
-     * @global \ELBP\Plugins\type $DB
+     * @global \block_elbp\Plugins\type $DB
      * @param type $file
      * @param type $fromCron
      * @return type

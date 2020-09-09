@@ -10,7 +10,7 @@
  * 
  */
 
-namespace ELBP\Plugins\Timetable;
+namespace block_elbp\Plugins\Timetable;
 
 /**
  * 

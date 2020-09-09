@@ -43,13 +43,13 @@ class block_elbp_timetable extends block_base
         
         try
         {
-            $this->TT = \ELBP\Plugins\Plugin::instaniate("elbp_timetable", "/blocks/elbp_timetable/");
+            $this->TT = \block_elbp\Plugins\Plugin::instaniate("elbp_timetable", "/blocks/elbp_timetable/");
             $this->TT->connect();
             $this->TT->loadStudent($USER->id, true);
-            $this->ELBP = ELBP\ELBP::instantiate( array("load_plugins" => false) );
-            $this->DBC = new ELBP\DB();
+            $this->ELBP = block_elbp\ELBP::instantiate( array("load_plugins" => false) );
+            $this->DBC = new block_elbp\DB();
         }
-        catch (\ELBP\ELBPException $e){
+        catch (\block_elbp\ELBPException $e){
             echo $e->getException();
             exit;
         }
