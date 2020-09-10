@@ -1,44 +1,44 @@
 <?php if(!defined('ELBP')) exit; ?>
 
 <form action="" method="post">
-<h2><?= $string['misconfig'] ?></h2>
+<h2><?php echo $string['misconfig'] ?></h2>
     
-    <small><strong><?= $string['usemoodleormis'] ?></strong> - <?= $string['usemoodleormis:desc'] ?></small><br>
-    <input type='radio' name='use_direct_mis' value='0' <?= ($TT->getSetting('use_direct_mis') != 1 ) ? 'checked' : '' ?> /> <?= $string['moodledatabase'] ?> &nbsp; 
-    <input type='radio' name='use_direct_mis' value='1' <?= ($TT->getSetting('use_direct_mis') == 1 ) ? 'checked' : '' ?> /> <?= $string['mis'] ?>
+    <small><strong><?php echo $string['usemoodleormis'] ?></strong> - <?php echo $string['usemoodleormis:desc'] ?></small><br>
+    <input type='radio' name='use_direct_mis' value='0' <?php echo ($TT->getSetting('use_direct_mis') != 1 ) ? 'checked' : '' ?> /> <?php echo $string['moodledatabase'] ?> &nbsp;
+    <input type='radio' name='use_direct_mis' value='1' <?php echo ($TT->getSetting('use_direct_mis') == 1 ) ? 'checked' : '' ?> /> <?php echo $string['mis'] ?>
     <br><br>
 
     <?php if ($TT->getMainMIS() !== false): ?>    
     
-    <small><strong><?= $string['mistablename'] ?></strong> - <?= $string['mistablename:desc'] ?></small><br>
-    <input type='text' name='mis_view_name' value='<?= $TT->getSetting('mis_view_name') ?>'  />
+    <small><strong><?php echo $string['mistablename'] ?></strong> - <?php echo $string['mistablename:desc'] ?></small><br>
+    <input type='text' name='mis_view_name' value='<?php echo $TT->getSetting('mis_view_name') ?>'  />
     <br><br>
     
-    <small><strong><?= $string['mispostexecute'] ?></strong> - <?= $string['mispostexecute:desc'] ?></small><br>
-    <textarea class="elbp_textarea" name='mis_post_connection_execute'><?= $TT->getSetting('mis_post_connection_execute') ?></textarea>
+    <small><strong><?php echo $string['mispostexecute'] ?></strong> - <?php echo $string['mispostexecute:desc'] ?></small><br>
+    <textarea class="elbp_textarea" name='mis_post_connection_execute'><?php echo $TT->getSetting('mis_post_connection_execute') ?></textarea>
     <br><br>
 <!--    
-    <small><strong><?= get_string('dateformat', 'block_elbp_timetable') ?></strong> - <?= get_string('dateformat:desc', 'block_elbp_timetable') ?></small><br>
-    <input type='text' class='elbp_small' name='mis_date_format' value='<?= $TT->getSetting('mis_date_format') ?>'  />
+    <small><strong><?php echo get_string('dateformat', 'block_elbp_timetable') ?></strong> - <?php echo get_string('dateformat:desc', 'block_elbp_timetable') ?></small><br>
+    <input type='text' class='elbp_small' name='mis_date_format' value='<?php echo $TT->getSetting('mis_date_format') ?>'  />
     <br><br>-->
     
-    <small><strong><?= get_string('daynumberformat', 'block_elbp_timetable') ?></strong> - <?= get_string('daynumberformat:desc', 'block_elbp_timetable') ?></small><br>
+    <small><strong><?php echo get_string('daynumberformat', 'block_elbp_timetable') ?></strong> - <?php echo get_string('daynumberformat:desc', 'block_elbp_timetable') ?></small><br>
     <select name="mis_day_number_format">
-        <option value="N" <?= ($TT->getSetting('mis_day_number_format') == 'N') ? 'selected' : ''; ?>><?= get_string('daynumberformat:N', 'block_elbp_timetable') ?></option>
-        <option value="w" <?= ($TT->getSetting('mis_day_number_format') == 'w') ? 'selected' : ''; ?>><?= get_string('daynumberformat:w', 'block_elbp_timetable') ?></option>
+        <option value="N" <?php echo ($TT->getSetting('mis_day_number_format') == 'N') ? 'selected' : ''; ?>><?php echo get_string('daynumberformat:N', 'block_elbp_timetable') ?></option>
+        <option value="w" <?php echo ($TT->getSetting('mis_day_number_format') == 'w') ? 'selected' : ''; ?>><?php echo get_string('daynumberformat:w', 'block_elbp_timetable') ?></option>
     </select>
     <br><br>
     
-    <small><strong><?= get_string('username') ?></strong> - <?= get_string('mis:username:desc', 'block_elbp_timetable') ?></small><br>
+    <small><strong><?php echo get_string('username') ?></strong> - <?php echo get_string('mis:username:desc', 'block_elbp_timetable') ?></small><br>
     <select name="mis_username_or_idnumber">
         <option value=""></option>
-        <option value="username" <?= ($TT->getSetting('mis_username_or_idnumber') == 'username') ? 'selected' : ''; ?> >username</option>
-        <option value="idnumber" <?= ($TT->getSetting('mis_username_or_idnumber') == 'idnumber') ? 'selected' : ''; ?> >idnumber</option>
+        <option value="username" <?php echo ($TT->getSetting('mis_username_or_idnumber') == 'username') ? 'selected' : ''; ?> >username</option>
+        <option value="idnumber" <?php echo ($TT->getSetting('mis_username_or_idnumber') == 'idnumber') ? 'selected' : ''; ?> >idnumber</option>
     </select>
     <br><br>
     
     
-    <h3><?= $string['misfieldmapping'] ?></h3>
+    <h3><?php echo $string['misfieldmapping'] ?></h3>
     
     <?php
     
@@ -64,49 +64,49 @@
     ?>   
     
     <?php else: ?>
-    <p><?= $string['misnocorefound'] ?></p>
+    <p><?php echo $string['misnocorefound'] ?></p>
     <?php endif; ?>
     
         
     <br><br>
-    <p class='elbp_centre'><input type="submit" name="submitconfig" value="<?= get_string('save', 'block_elbp') ?>" /></p>
+    <p class='elbp_centre'><input type="submit" name="submitconfig" value="<?php echo get_string('save', 'block_elbp') ?>" /></p>
 </form>
 
 <br><br>
 
 <form action="" method="post">
-<h2><?= $string['mistest'] ?></h2>
+<h2><?php echo $string['mistest'] ?></h2>
 
-    <small><strong><?= get_string('username') ?></strong> - <?= get_string('mistest:username:desc', 'block_elbp_timetable') ?></small><br>
-    <input type='text' name='testusername' value='<?= isset($_POST['testusername']) ? elbp_html($_POST['testusername']) : ''; ?>'  />
+    <small><strong><?php echo get_string('username') ?></strong> - <?php echo get_string('mistest:username:desc', 'block_elbp_timetable') ?></small><br>
+    <input type='text' name='testusername' value='<?php echo isset($_POST['testusername']) ? elbp_html($_POST['testusername']) : ''; ?>'  />
     <br><br>
     
     <?php if (isset($MSGS['queryerrors']) && !empty($MSGS['queryerrors'])): ?>
-        <?= elbp_error_msg($MSGS['queryerrors']) ?>
+        <?php echo elbp_error_msg($MSGS['queryerrors']) ?>
     <?php endif; ?>
     
     <?php if (isset($MSGS['sql'])): ?>
     <div class="elbp_code">
-        <?= \elbp_format_code($MSGS['sql'], 'sql') ?>
+        <?php echo \elbp_format_code($MSGS['sql'], 'sql') ?>
     </div>
     <?php endif; ?>
     
     <?php if (isset($MSGS['testoutput'])): ?>
         <?php if (!empty($MSGS['testoutput'])): ?>
             <?php foreach($MSGS['testoutput'] as $lesson): ?>
-                <?= nl2br($lesson); ?>
+                <?php echo nl2br($lesson); ?>
             <?php endforeach; ?>
         <?php else: ?>
-            <?= get_string('noresults', 'block_elbp') ?>
+            <?php echo get_string('noresults', 'block_elbp') ?>
         <?php endif; ?>
     <?php endif; ?>
 
 <br><br>
     <p class='elbp_centre'>
         
-        <small><?= $string['mistest:debug'] ?></small><br>
-        <input type="submit" name="submitmistest_allclasses" value="<?= get_string('runtest:allclasses', 'block_elbp_timetable') ?>" />
-        <input type="submit" name="submitmistest_todayclasses" value="<?= get_string('runtest:todayclasses', 'block_elbp_timetable') ?>" />
+        <small><?php echo $string['mistest:debug'] ?></small><br>
+        <input type="submit" name="submitmistest_allclasses" value="<?php echo get_string('runtest:allclasses', 'block_elbp_timetable') ?>" />
+        <input type="submit" name="submitmistest_todayclasses" value="<?php echo get_string('runtest:todayclasses', 'block_elbp_timetable') ?>" />
 
     </p>
 </form>

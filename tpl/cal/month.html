@@ -1,6 +1,6 @@
 <?php if(!defined('ELBP')) exit; ?>
 
-<?= $TT->buildCSS(); ?>
+<?php echo $TT->buildCSS(); ?>
 <table id="elbp_tt_tt">
 
         <thead>
@@ -8,45 +8,45 @@
 
 
         <?php if ($TT->getSetting('mis_day_number_format') == "N") : ?>
-            <th class="elbp_timetable_day"><?= get_string('mon', 'block_elbp_timetable') ?></th>
+            <th class="elbp_timetable_day"><?php echo get_string('mon', 'block_elbp_timetable') ?></th>
         <?php else: ?>
-            <th class="elbp_timetable_day"><?= get_string('sun', 'block_elbp_timetable') ?></th>
+            <th class="elbp_timetable_day"><?php echo get_string('sun', 'block_elbp_timetable') ?></th>
         <?php endif; ?>
         
         <?php if ($TT->getSetting('mis_day_number_format') == "N") : ?>
-            <th class="elbp_timetable_day"><?= get_string('tue', 'block_elbp_timetable') ?></th>
+            <th class="elbp_timetable_day"><?php echo get_string('tue', 'block_elbp_timetable') ?></th>
         <?php else: ?>
-            <th class="elbp_timetable_day"><?= get_string('mon', 'block_elbp_timetable') ?></th>
+            <th class="elbp_timetable_day"><?php echo get_string('mon', 'block_elbp_timetable') ?></th>
         <?php endif; ?>
         
         <?php if ($TT->getSetting('mis_day_number_format') == "N") : ?>
-            <th class="elbp_timetable_day"><?= get_string('wed', 'block_elbp_timetable') ?></th>
+            <th class="elbp_timetable_day"><?php echo get_string('wed', 'block_elbp_timetable') ?></th>
         <?php else: ?>
-            <th class="elbp_timetable_day"><?= get_string('tue', 'block_elbp_timetable') ?></th>
+            <th class="elbp_timetable_day"><?php echo get_string('tue', 'block_elbp_timetable') ?></th>
         <?php endif; ?>
         
         <?php if ($TT->getSetting('mis_day_number_format') == "N") : ?>
-            <th class="elbp_timetable_day"><?= get_string('thu', 'block_elbp_timetable') ?></th>
+            <th class="elbp_timetable_day"><?php echo get_string('thu', 'block_elbp_timetable') ?></th>
         <?php else: ?>
-            <th class="elbp_timetable_day"><?= get_string('wed', 'block_elbp_timetable') ?></th>
+            <th class="elbp_timetable_day"><?php echo get_string('wed', 'block_elbp_timetable') ?></th>
         <?php endif; ?>
         
         <?php if ($TT->getSetting('mis_day_number_format') == "N") : ?>
-            <th class="elbp_timetable_day"><?= get_string('fri', 'block_elbp_timetable') ?></th>
+            <th class="elbp_timetable_day"><?php echo get_string('fri', 'block_elbp_timetable') ?></th>
         <?php else: ?>
-            <th class="elbp_timetable_day"><?= get_string('thu', 'block_elbp_timetable') ?></th>
+            <th class="elbp_timetable_day"><?php echo get_string('thu', 'block_elbp_timetable') ?></th>
         <?php endif; ?>
         
         <?php if ($TT->getSetting('mis_day_number_format') == "N") : ?>
-            <th class="elbp_timetable_day"><?= get_string('sat', 'block_elbp_timetable') ?></th>
+            <th class="elbp_timetable_day"><?php echo get_string('sat', 'block_elbp_timetable') ?></th>
         <?php else: ?>
-            <th class="elbp_timetable_day"><?= get_string('fri', 'block_elbp_timetable') ?></th>
+            <th class="elbp_timetable_day"><?php echo get_string('fri', 'block_elbp_timetable') ?></th>
         <?php endif; ?>
         
         <?php if ($TT->getSetting('mis_day_number_format') == "N") : ?>
-            <th class="elbp_timetable_day"><?= get_string('sun', 'block_elbp_timetable') ?></th>
+            <th class="elbp_timetable_day"><?php echo get_string('sun', 'block_elbp_timetable') ?></th>
         <?php else: ?>
-            <th class="elbp_timetable_day"><?= get_string('sat', 'block_elbp_timetable') ?></th>
+            <th class="elbp_timetable_day"><?php echo get_string('sat', 'block_elbp_timetable') ?></th>
         <?php endif; ?>
 
             
@@ -56,19 +56,19 @@
 
         <tbody>
 
-            <?= $output ?>
+            <?php echo $output ?>
 
         </tbody>
 
 </table>
 
 <script>
-    $('#elbp_tt_title').text('<?= $month->format("F Y") ?>');
+    $('#elbp_tt_title').text('<?php echo $month->format("F Y") ?>');
     $('#back_arrow').unbind('click').click( function(){
-        ELBP.Timetable.month( <?= ($monthAdd - 1) ?> );
+        ELBP.Timetable.month( <?php echo ($monthAdd - 1) ?> );
     } );
     $('#forward_arrow').unbind('click').click( function(){
-        ELBP.Timetable.month( <?= ($monthAdd + 1) ?> );
+        ELBP.Timetable.month( <?php echo ($monthAdd + 1) ?> );
     } );
     $('#today').unbind('click').click( function(){
         ELBP.Timetable.month('today');

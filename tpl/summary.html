@@ -3,13 +3,13 @@
 <table class="elbp_summary_table">
     <tbody>
       <tr>
-          <td class="elbp_summary_title" style="background-image:url('<?= $CFG->wwwroot ?>/blocks/elbp_timetable/pix/icon.png');">
-            <?= get_string('thisweektimetable', 'block_elbp_timetable') ?>
+          <td class="elbp_summary_title" style="background-image:url('<?php echo $CFG->wwwroot ?>/blocks/elbp_timetable/pix/icon.png');">
+            <?php echo get_string('thisweektimetable', 'block_elbp_timetable') ?>
           </td>        
       </tr>
     </tbody>
   </table>
     
 <div style="text-align:left;padding:5px;">
-        <?= $obj->getTextTimetableDays(); ?>
+        <?php echo $obj->getTextTimetableDays(); ?>
 </div>

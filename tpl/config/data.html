@@ -1,29 +1,29 @@
 <?php if(!defined('ELBP')) exit; ?>
 
-<h2><?= $string['dataimport'] ?></h2>
+<h2><?php echo $string['dataimport'] ?></h2>
 
 <div class="elbp_warning_box">
-    <?= get_string('dataimport:warning', 'block_elbp_timetable'); ?>
+    <?php echo get_string('dataimport:warning', 'block_elbp_timetable'); ?>
 </div>
 
-<p><?= $string['attendance:dataimport:info'] ?></p>
+<p><?php echo $string['attendance:dataimport:info'] ?></p>
 
 <p>
 <?php if ($importFile !== false): ?>
-    <a href="<?= $CFG->wwwroot ?>/blocks/elbp/download.php?f=<?= $importFile ?>"><?= $string['csvtemplate'] ?></a>
+    <a href="<?php echo $CFG->wwwroot ?>/blocks/elbp/download.php?f=<?php echo $importFile ?>"><?php echo $string['csvtemplate'] ?></a>
 <?php else: ?>
-    [[<?= $string['filenotfound'] ?>]]
+    [[<?php echo $string['filenotfound'] ?>]]
 <?php endif; ?>
 &nbsp;&nbsp;&nbsp;&nbsp;
 <?php if ($exampleFile !== false): ?>
-    <a href="<?= $CFG->wwwroot ?>/blocks/elbp/download.php?f=<?= $exampleFile ?>"><?= $string['csvexample'] ?></a>
+    <a href="<?php echo $CFG->wwwroot ?>/blocks/elbp/download.php?f=<?php echo $exampleFile ?>"><?php echo $string['csvexample'] ?></a>
 <?php else: ?>
-    [[<?= $string['filenotfound'] ?>]]
+    [[<?php echo $string['filenotfound'] ?>]]
 <?php endif; ?>
 
 &nbsp;&nbsp;&nbsp;&nbsp;
 
-<a href="<?= $CFG->wwwroot ?><?= $TT->getPath() ?>config.php?view=data&reload=1"><img style="vertical-align:top;" src="<?= $OUTPUT->image_url('t/reload'); ?>" title="<?= $string['reloadcsvs'] ?>" /></a>
+<a href="<?php echo $CFG->wwwroot ?><?php echo $TT->getPath() ?>config.php?view=data&reload=1"><img style="vertical-align:top;" src="<?php echo $OUTPUT->image_url('t/reload'); ?>" title="<?php echo $string['reloadcsvs'] ?>" /></a>
 
 </p>
 
@@ -31,7 +31,7 @@
 
 <form action="" method="post" enctype="multipart/form-data">
     
-    <input type="file" name="file" /> <input type="submit" name="submit_import" value="<?= $string['import'] ?>" />
+    <input type="file" name="file" /> <input type="submit" name="submit_import" value="<?php echo $string['import'] ?>" />
     
 </form>
 
@@ -39,11 +39,11 @@
     
     <?php if ($MSGS['result']['success'] === true): ?>
         <div class='process-output-success'>
-            <?= $MSGS['result']['output'] ?>
+            <?php echo $MSGS['result']['output'] ?>
         </div>
     <?php else: ?>
         <div class='process-output-error'>
-            <?= $MSGS['result']['error'] ?>
+            <?php echo $MSGS['result']['error'] ?>
         </div>
     <?php endif; ?>
 
@@ -51,37 +51,37 @@
 
 <br><br>
 
-<h2><?= $string['datasettings'] ?></h2>
+<h2><?php echo $string['datasettings'] ?></h2>
 
-<p><?= get_string('datasettings:info', 'block_elbp_timetable') ?></p>
+<p><?php echo get_string('datasettings:info', 'block_elbp_timetable') ?></p>
 
 <form action="" method="post">
     
-    <small><strong><?= $string['users']; ?></strong> - <?= $string['dataimport:users'] ?></small><br>
-    <input type='radio' name='import_create_user_if_not_exists' value='1' <?= ($TT->getSetting('import_create_user_if_not_exists') == 1 ) ? 'checked' : '' ?> /> <?= $string['enable'] ?> &nbsp; 
-    <input type='radio' name='import_create_user_if_not_exists' value='0' <?= ($TT->getSetting('import_create_user_if_not_exists') != 1 ) ? 'checked' : '' ?> /> <?= $string['disable'] ?> &nbsp; 
+    <small><strong><?php echo $string['users']; ?></strong> - <?php echo $string['dataimport:users'] ?></small><br>
+    <input type='radio' name='import_create_user_if_not_exists' value='1' <?php echo ($TT->getSetting('import_create_user_if_not_exists') == 1 ) ? 'checked' : '' ?> /> <?php echo $string['enable'] ?> &nbsp;
+    <input type='radio' name='import_create_user_if_not_exists' value='0' <?php echo ($TT->getSetting('import_create_user_if_not_exists') != 1 ) ? 'checked' : '' ?> /> <?php echo $string['disable'] ?> &nbsp;
     <br><br>
     
-    <small><strong><?= $string['courses']; ?></strong> - <?= $string['dataimport:courses'] ?></small><br>
-    <input type='radio' name='import_create_course_if_not_exists' value='1' <?= ($TT->getSetting('import_create_course_if_not_exists') == 1 ) ? 'checked' : '' ?> /> <?= $string['enable'] ?> &nbsp; 
-    <input type='radio' name='import_create_course_if_not_exists' value='0' <?= ($TT->getSetting('import_create_course_if_not_exists') != 1 ) ? 'checked' : '' ?> /> <?= $string['disable'] ?> &nbsp; 
+    <small><strong><?php echo $string['courses']; ?></strong> - <?php echo $string['dataimport:courses'] ?></small><br>
+    <input type='radio' name='import_create_course_if_not_exists' value='1' <?php echo ($TT->getSetting('import_create_course_if_not_exists') == 1 ) ? 'checked' : '' ?> /> <?php echo $string['enable'] ?> &nbsp;
+    <input type='radio' name='import_create_course_if_not_exists' value='0' <?php echo ($TT->getSetting('import_create_course_if_not_exists') != 1 ) ? 'checked' : '' ?> /> <?php echo $string['disable'] ?> &nbsp;
     <br><br>
     
-    <small><strong><?= $string['coursefield']; ?></strong> - <?= $string['dataimport:coursefield'] ?></small><br>
+    <small><strong><?php echo $string['coursefield']; ?></strong> - <?php echo $string['dataimport:coursefield'] ?></small><br>
     <select name='import_course_field'>
-        <option value='shortname' <?= ($TT->getSetting('import_course_field') == 'shortname' ) ? 'selected' : '' ?> >shortname</option>
-        <option value='idnumber' <?= ($TT->getSetting('import_course_field') == 'idnumber' ) ? 'selected' : '' ?> >idnumber</option>
+        <option value='shortname' <?php echo ($TT->getSetting('import_course_field') == 'shortname' ) ? 'selected' : '' ?> >shortname</option>
+        <option value='idnumber' <?php echo ($TT->getSetting('import_course_field') == 'idnumber' ) ? 'selected' : '' ?> >idnumber</option>
     </select>
     <br><br>
     
-    <small><strong><?= $string['userfield']; ?></strong> - <?= $string['dataimport:userfield'] ?></small><br>
+    <small><strong><?php echo $string['userfield']; ?></strong> - <?php echo $string['dataimport:userfield'] ?></small><br>
     <select name='import_user_field'>
-        <option value='username' <?= ($TT->getSetting('import_user_field') == 'username' ) ? 'selected' : '' ?> >username</option>
-        <option value='idnumber' <?= ($TT->getSetting('import_user_field') == 'idnumber' ) ? 'selected' : '' ?> >idnumber</option>
+        <option value='username' <?php echo ($TT->getSetting('import_user_field') == 'username' ) ? 'selected' : '' ?> >username</option>
+        <option value='idnumber' <?php echo ($TT->getSetting('import_user_field') == 'idnumber' ) ? 'selected' : '' ?> >idnumber</option>
     </select>
     <br><br>
     
-    <input type="submit" name="submitconfig" value="<?= $string['save'] ?>" />
+    <input type="submit" name="submitconfig" value="<?php echo $string['save'] ?>" />
     
 </form>
     
