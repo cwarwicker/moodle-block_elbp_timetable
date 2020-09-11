@@ -36,6 +36,14 @@ $capabilities = array(
         )
     ),
 
+    'block/elbp_timetable:myaddinstance' => array(
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_BLOCK,
+        'archetypes' => array(
+            'user' => CAP_ALLOW,
+        )
+    ),
+
     'block/elbp_timetable:can_change_colours' => array(
         'captype' => 'read',
         'contextlevel' => CONTEXT_BLOCK,

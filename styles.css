@@ -153,11 +153,6 @@ div#elbp_tt_nav table th
     font-weight: normal;
 }
 
-div#elbp_tt_nav table th:nth-child(1), div#elbp_tt_nav table th:nth-child(3){
-/*    width: 20%;
-    min-width: 240px;*/
-}
-
 div#elbp_tt_nav table th:nth-child(2){
     width: 55%;
     font-size: 14pt;
@@ -185,7 +180,7 @@ div#elbp_tt_nav table th ul li a
     text-decoration: none;
     border-radius: 5px;
     display: inline-block;
-} 
+}
 
 div#elbp_tt_nav table th ul li a.arrow
 {
