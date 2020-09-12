@@ -2115,6 +2115,9 @@ CSS;
 
         global $MSGS;
 
+        // Require the sesskey before submitting the forms.
+        require_sesskey();
+
         // Possible config forms that might be submitted.
         $submission = array(
             'submitconfig' => optional_param('submitconfig', false, PARAM_TEXT),

@@ -30,7 +30,8 @@
 <br>
 
 <form action="" method="post" enctype="multipart/form-data">
-    
+
+    <input type="hidden" name="sesskey" value="<?php echo sesskey() ?>" />
     <input type="file" name="file" /> <input type="submit" name="submit_import" value="<?php echo $string['import'] ?>" />
     
 </form>
@@ -56,7 +57,9 @@
 <p><?php echo get_string('datasettings:info', 'block_elbp_timetable') ?></p>
 
 <form action="" method="post">
-    
+
+    <input type="hidden" name="sesskey" value="<?php echo sesskey() ?>" />
+
     <small><strong><?php echo $string['users']; ?></strong> - <?php echo $string['dataimport:users'] ?></small><br>
     <input type='radio' name='import_create_user_if_not_exists' value='1' <?php echo ($TT->getSetting('import_create_user_if_not_exists') == 1 ) ? 'checked' : '' ?> /> <?php echo $string['enable'] ?> &nbsp;
     <input type='radio' name='import_create_user_if_not_exists' value='0' <?php echo ($TT->getSetting('import_create_user_if_not_exists') != 1 ) ? 'checked' : '' ?> /> <?php echo $string['disable'] ?> &nbsp;

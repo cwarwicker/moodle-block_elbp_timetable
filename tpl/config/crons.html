@@ -11,7 +11,9 @@
 <p><?php echo get_string('crons:info', 'block_elbp_timetable') ?></p>
     
 <form action="" method="post">
-    
+
+    <input type="hidden" name="sesskey" value="<?php echo sesskey() ?>" />
+
     <small><strong><?php echo $string['enabledisable'] ?></strong> - <?php echo $string['cron:enableddisable:desc'] ?></small><br>
     <input type='radio' name='cron_enabled' value='1' <?php echo ($TT->getSetting('cron_enabled') == 1 ) ? 'checked' : '' ?> /> <?php echo $string['enable'] ?> &nbsp;
     <input type='radio' name='cron_enabled' value='0' <?php echo ($TT->getSetting('cron_enabled') != 1 ) ? 'checked' : '' ?> /> <?php echo $string['disable'] ?>

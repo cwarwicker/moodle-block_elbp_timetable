@@ -2,6 +2,8 @@
 
 <form action='' method='post'>
 
+    <input type="hidden" name="sesskey" value="<?php echo sesskey() ?>" />
+
     <h2><?php echo get_string('blockconfig', 'block_elbp') ?></h2>
     <?php $TT->displayConfig() ?>
     
@@ -12,8 +14,7 @@
     <input type='radio' name='link_course_by' value='shortname' <?php echo ($TT->getSetting('link_course_by') == 'shortname' ) ? 'checked' : '' ?> /> <?php echo get_string('shortname', 'block_elbp_timetable') ?> &nbsp;
     <input type='radio' name='link_course_by' value='idnumber' <?php echo ($TT->getSetting('link_course_by') == 'idnumber' ) ? 'checked' : '' ?> /> <?php echo get_string('idnumber', 'block_elbp_timetable') ?> &nbsp;
     <input type='radio' name='link_course_by' value='fullname' <?php echo ($TT->getSetting('link_course_by') == 'fullname' ) ? 'checked' : '' ?> /> <?php echo get_string('fullname', 'block_elbp_timetable') ?> &nbsp;
-          
-    
+
     <br><br>
     
     <h2><?php echo get_string('timesettings', 'block_elbp_timetable') ?></h2>
@@ -46,12 +47,8 @@
         <option value="60" <?php echo ( 60 == $TT->getDefaultMinutes() ) ? 'selected' : '' ?>  >60</option>
     </select>
     <br><br>
-    
-    
-    
+
     <br><br>
-        
-    
     
     <h2><?php echo get_string('coloursettings', 'block_elbp_timetable') ?></h2>
     
@@ -76,8 +73,7 @@
     <small><strong><?php echo get_string('sunday', 'block_elbp_timetable') ?></strong> - <?php echo get_string('coloursetting:desc', 'block_elbp_timetable') ?></small><br>
         <input type='color' name='sunday_colour' value='<?php echo $TT->getDayColour('sunday') ?>' />
     <br><br>    
-    
-    
+
     <br><br>
     <p class='elbp_centre'><input type="submit" name="submitconfig" value="<?php echo get_string('save', 'block_elbp') ?>" /></p>
     
