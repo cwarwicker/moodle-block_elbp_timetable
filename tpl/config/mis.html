@@ -17,10 +17,6 @@
     <small><strong><?php echo $string['mispostexecute'] ?></strong> - <?php echo $string['mispostexecute:desc'] ?></small><br>
     <textarea class="elbp_textarea" name='mis_post_connection_execute'><?php echo $TT->getSetting('mis_post_connection_execute') ?></textarea>
     <br><br>
-<!--    
-    <small><strong><?php echo get_string('dateformat', 'block_elbp_timetable') ?></strong> - <?php echo get_string('dateformat:desc', 'block_elbp_timetable') ?></small><br>
-    <input type='text' class='elbp_small' name='mis_date_format' value='<?php echo $TT->getSetting('mis_date_format') ?>'  />
-    <br><br>-->
     
     <small><strong><?php echo get_string('daynumberformat', 'block_elbp_timetable') ?></strong> - <?php echo get_string('daynumberformat:desc', 'block_elbp_timetable') ?></small><br>
     <select name="mis_day_number_format">
@@ -78,7 +74,7 @@
 <h2><?php echo $string['mistest'] ?></h2>
 
     <small><strong><?php echo get_string('username') ?></strong> - <?php echo get_string('mistest:username:desc', 'block_elbp_timetable') ?></small><br>
-    <input type='text' name='testusername' value='<?php echo isset($_POST['testusername']) ? elbp_html($_POST['testusername']) : ''; ?>'  />
+    <input type='text' name='testusername' value=''  />
     <br><br>
     
     <?php if (isset($MSGS['queryerrors']) && !empty($MSGS['queryerrors'])): ?>

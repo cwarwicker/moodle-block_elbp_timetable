@@ -31,6 +31,7 @@ date_default_timezone_set("UTC");
 
 require_once($CFG->dirroot . '/blocks/elbp/lib.php');
 require_once($CFG->dirroot . '/blocks/elbp_timetable/classes/Lesson.class.php');
+require_once($CFG->dirroot . '/local/df_hub/lib.php');
 
 /**
  *
@@ -2110,24 +2111,61 @@ CSS;
      * @param type $settings
      * @return boolean
      */
-    public function saveConfig($settings) {
+    public function saveConfig($settings = false) {
 
         global $MSGS;
 
-        if (isset($settings['submitmistest_allclasses']) && !empty($settings['testusername'])) {
-            $username = $settings['testusername'];
-            $this->runTestMisQuery($username, "all_classes");
-            return false;
-        } else if (isset($settings['submitmistest_todayclasses']) && !empty($settings['testusername'])) {
-            $username = $settings['testusername'];
-            $this->runTestMisQuery($username, "todays_classes");
-            return false;
-        } else if (isset($settings['submitconfig'])) {
+        // Possible config forms that might be submitted.
+        $submission = array(
+            'submitconfig' => optional_param('submitconfig', false, PARAM_TEXT),
+            'submit_import' => optional_param('submit_import', false, PARAM_TEXT),
+            'submitmistest_allclasses' => optional_param('submitmistest_allclasses', false, PARAM_TEXT),
+            'submitmistest_todayclasses' => optional_param('submitmistest_todayclasses', false, PARAM_TEXT),
+        );
 
-            // Mappings first if they are there
-            if (isset($settings['mis_map'])) {
+        // Main config forms.
+        if ($submission['submitconfig']) {
 
-                // Get the plugin's core MIS connection
+            $settings = array(
+                'enabled' => optional_param('enabled', false, PARAM_INT),
+                'plugin_title' => optional_param('plugin_title', false, PARAM_TEXT),
+                'header_bg_col' => optional_param('header_bg_col', false, PARAM_TEXT),
+                'header_font_col' => optional_param('header_font_col', false, PARAM_TEXT),
+                'plugin_stud_alerts_enabled' => optional_param('plugin_stud_alerts_enabled', false, PARAM_INT),
+                'link_course_by' => optional_param('link_course_by', false, PARAM_TEXT),
+                'start_hour' => optional_param('start_hour', false, PARAM_TEXT), // The hours can have leading zeroes so is easier to just do as text.
+                'end_hour' => optional_param('end_hour', false, PARAM_TEXT),
+                'minutes' => optional_param('minutes', false, PARAM_TEXT),
+                'monday_colour' => optional_param('monday_colour', false, PARAM_TEXT),
+                'tuesday_colour' => optional_param('tuesday_colour', false, PARAM_TEXT),
+                'wednesday_colour' => optional_param('wednesday_colour', false, PARAM_TEXT),
+                'thursday_colour' => optional_param('thursday_colour', false, PARAM_TEXT),
+                'friday_colour' => optional_param('friday_colour', false, PARAM_TEXT),
+                'saturday_colour' => optional_param('saturday_colour', false, PARAM_TEXT),
+                'sunday_colour' => optional_param('sunday_colour', false, PARAM_TEXT),
+                'cron_enabled' => optional_param('cron_enabled', false, PARAM_INT),
+                'cron_timing_type' => optional_param('cron_timing_type', false, PARAM_TEXT),
+                'cron_timing_hour' => optional_param('cron_timing_hour', false, PARAM_INT),
+                'cron_timing_minute' => optional_param('cron_timing_minute', false, PARAM_INT),
+                'cron_file_location' => optional_param('cron_file_location', false, PARAM_TEXT),
+                'import_create_user_if_not_exists' => optional_param('import_create_user_if_not_exists', false, PARAM_INT),
+                'import_create_course_if_not_exists' => optional_param('import_create_course_if_not_exists', false, PARAM_INT),
+                'import_course_field' => optional_param('import_course_field', false, PARAM_TEXT),
+                'import_user_field' => optional_param('import_user_field', false, PARAM_TEXT),
+                'use_direct_mis' => optional_param('use_direct_mis', false, PARAM_INT),
+                'mis_view_name' => optional_param('mis_view_name', false, PARAM_TEXT),
+                'mis_post_connection_execute' => optional_param('mis_post_connection_execute', false, PARAM_TEXT),
+                'mis_day_number_format' => optional_param('mis_day_number_format', false, PARAM_TEXT),
+                'mis_username_or_idnumber' => optional_param('mis_username_or_idnumber', false, PARAM_TEXT),
+                'mis_map' => \df_optional_param_array_recursive('mis_map', false, PARAM_TEXT),
+                'mis_func' => \df_optional_param_array_recursive('mis_func', false, PARAM_TEXT),
+                'mis_alias' => \df_optional_param_array_recursive('mis_alias', false, PARAM_TEXT),
+            );
+
+            // Deal with the mappings first if they are there.
+            if ($settings['mis_map']) {
+
+                // Get the plugin's core MIS connection.
                 $core = $this->getMainMIS();
                 if (!$core) {
                     $MSGS['errors'][] = get_string('nocoremis', 'block_elbp_timetable');
@@ -2147,21 +2185,45 @@ CSS;
 
                 }
 
+                // Unset the mappings as they have just been processed and don't need to be passed into the parent method.
                 unset($settings['mis_map']);
                 unset($settings['mis_alias']);
                 unset($settings['mis_func']);
 
             }
 
+            // Pass all the submitted data into the parent method to save to the DB.
             parent::saveConfig($settings);
             return true;
 
-        } else if (isset($settings['submit_import']) && isset($_FILES['file']) && !$_FILES['file']['error']) {
+        } else if ($submission['submit_import'] && isset($_FILES['file']) && !$_FILES['file']['error']) {
 
             $result = $this->runImport($_FILES['file']);
             $MSGS['result'] = $result;
             return false;
 
+        } else if ($submission['submitmistest_allclasses']) {
+
+            $settings = array(
+                'testusername' => optional_param('testusername', false, PARAM_TEXT),
+            );
+
+            if (!empty($settings['testusername'])) {
+                $this->runTestMisQuery($settings['testusername'], "all_classes");
+            }
+
+            return false;
+        } else if ($submission['submitmistest_todayclasses']) {
+
+            $settings = array(
+                'testusername' => optional_param('testusername', false, PARAM_TEXT),
+            );
+
+            if (!empty($settings['testusername'])) {
+                $this->runTestMisQuery($settings['testusername'], "todays_classes");
+            }
+
+            return false;
         }
 
     }
@@ -2175,6 +2237,8 @@ CSS;
     public function runTestMisQuery($username, $query) {
 
         global $CFG, $MSGS;
+
+        $return = true;
 
         // This query will select all records it can find for a specified username/idnumber
 
@@ -2202,8 +2266,13 @@ CSS;
         foreach ($reqFields as $reqField) {
             if (!$conn->getFieldMap($reqField)) {
                 $MSGS['errors'][] = get_string('missingreqfield', 'block_elbp_timetable') . ": " . $reqField;
-                return false;
+                $return = false;
             }
+        }
+
+        // If we couldn't find some of the required fields, return false now.
+        if (!$return) {
+            return false;
         }
 
         $this->connect();

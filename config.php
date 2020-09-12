@@ -47,12 +47,12 @@ try {
 
 
 $TPL = new \block_elbp\Template();
-$MSGS['errors'] = '';
-$MSGS['success'] = '';
+$MSGS['errors'] = [];
+$MSGS['success'] = [];
 
-// Submitted
+// This usage of $_POST is just to check if any forms were submitted.
 if (!empty($_POST)) {
-    if ($TT->saveConfig($_POST)) {
+    if ($TT->saveConfig()) {
         $MSGS['success'] = get_string('settingsupdated', 'block_elbp');
         $TPL->set("MSGS", $MSGS);
     }
