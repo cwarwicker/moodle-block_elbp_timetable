@@ -30,7 +30,7 @@ $DBC = new block_elbp\DB();
 
 $view = optional_param('view', 'main', PARAM_ALPHA);
 
-$access = $ELBP->getCoursePermissions(1);
+$access = $ELBP->getCoursePermissions(SITEID);
 if (!$access['god']) {
     print_error( get_string('invalidaccess', 'block_elbp') );
 }
@@ -59,7 +59,7 @@ if (!empty($_POST)) {
 }
 
 // Set up PAGE
-$PAGE->set_context( context_course::instance(1) );
+$PAGE->set_context( context_course::instance(SITEID) );
 $PAGE->set_url($CFG->wwwroot . '/blocks/elbp_timetable/config.php');
 $PAGE->set_title( get_string('timetableconfig', 'block_elbp_timetable') );
 $PAGE->set_heading( get_string('timetableconfig', 'block_elbp_timetable') );
